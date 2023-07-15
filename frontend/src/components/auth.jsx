@@ -33,16 +33,17 @@ const Auth = () => {
   const isRegister = pageType === "register";
 
   const register = async (values, onSubmitProps) => {
-    const formData = new FormData();
+    /*const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
-    }
+    }*/
 
     const savedUserResponse = await fetch(
       "http://localhost:5000/auth/register",
       {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
       }
     );
     const savedUser = await savedUserResponse.json();
